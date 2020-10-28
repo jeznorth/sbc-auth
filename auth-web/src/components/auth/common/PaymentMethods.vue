@@ -134,6 +134,7 @@ const PAYMENT_METHODS = {
 export default class PaymentMethodSelector extends Vue {
   @Prop({ default: '' }) currentOrgType: string
   @Prop({ default: undefined }) currentOrganization: Organization
+  @Prop({ default: '' }) currentSelectedPaymentMethod: string
   private selectedPaymentMethod: string = ''
   private paymentTypes = PaymentTypes
   private padInfo: PADInfo = {} as PADInfo
@@ -154,6 +155,12 @@ export default class PaymentMethodSelector extends Vue {
 
   private get isPADOnly () {
     return (this.currentOrgType === Account.UNLINKED_PREMIUM)
+  }
+
+  private mounted () {
+    if (!this.isPADOnly) {
+      this.selectPayment({ type: this.currentSelectedPaymentMethod })
+    }
   }
 
   private selectPayment (payment) {
