@@ -3,7 +3,7 @@
     <h4 class="mb-4">Banking Information</h4>
     <v-form ref="preAuthDebitForm">
       <v-row>
-        <v-col cols="6" class="py-0">
+        <v-col cols="12" sm="6" class="py-0">
           <v-text-field
             label="Transit Number"
             filled
@@ -15,7 +15,7 @@
             v-mask="'#####'"
           ></v-text-field>
         </v-col>
-        <v-col cols="6" class="py-0">
+        <v-col cols="12" sm="6" class="py-0">
           <v-text-field
             label="Institution Number"
             filled
@@ -42,7 +42,7 @@
       </v-row>
       <v-row>
         <v-col class="pb-0">
-          <div class="terms-container">
+          <div class="terms-container pl-2">
             <TermsOfUseDialog
               :isAlreadyAccepted="isTermsOfServiceAccepted"
               @terms-acceptance-status="isTermsAccepted"

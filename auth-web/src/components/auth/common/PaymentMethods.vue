@@ -64,15 +64,13 @@
       </v-card>
     </template>
     <!-- showing PAD form without card selector for single payment types -->
-    <v-row v-else>
-      <v-col cols="9" class="py-0">
-        <PADInfoForm
-          :padInformation="{}"
-          @is-pre-auth-debit-form-valid="isPADValid"
-          @emit-pre-auth-debit-info="getPADInfo"
-        ></PADInfoForm>
-      </v-col>
-    </v-row>
+    <div v-else class="pad-form-container">
+      <PADInfoForm
+        :padInformation="{}"
+        @is-pre-auth-debit-form-valid="isPADValid"
+        @emit-pre-auth-debit-info="getPADInfo"
+      ></PADInfoForm>
+    </div>
   </div>
 </template>
 
@@ -224,5 +222,9 @@ export default class PaymentMethodSelector extends Vue {
 
 .payment-card-contents {
   width: 100%;
+}
+
+.pad-form-container {
+  max-width: 40rem;
 }
 </style>

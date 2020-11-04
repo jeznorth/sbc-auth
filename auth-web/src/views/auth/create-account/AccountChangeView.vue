@@ -39,8 +39,8 @@ export default class AccountChangeView extends Vue {
   private stepperConfig: Array<StepConfiguration> =
     [
       {
-        title: 'Select Account Type',
-        stepName: 'Select Account Type',
+        title: 'Account Type',
+        stepName: 'Account Type',
         component: AccountTypeSelector,
         componentProps: { 'isAccountChange': true, 'cancelUrl': ConfigHelper.accountSettingsRoute() }
       },

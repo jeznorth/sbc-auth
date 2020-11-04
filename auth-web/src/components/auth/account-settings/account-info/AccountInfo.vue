@@ -58,16 +58,16 @@
           </div>
           <div class="value">
             <v-text-field
-            filled
-            clearable
-            required
-            label="Account Name"
-            :rules="accountNameRules"
-            v-can:CHANGE_ORG_NAME.disable
-            :disabled="!canChangeAccountName()"
-            v-if="!isPremiumAccount"
-            v-model="orgName"
-            v-on:keydown="enableBtn()"
+              filled
+              clearable
+              required
+              label="Account Name"
+              :rules="accountNameRules"
+              v-can:CHANGE_ORG_NAME.disable
+              :disabled="!canChangeAccountName()"
+              v-if="!isPremiumAccount"
+              v-model="orgName"
+              v-on:keydown="enableBtn()"
             >
             </v-text-field>
           </div>

@@ -18,10 +18,12 @@
         </div>
       </v-slide-y-transition>
       <v-row>
-        <v-col cols="4" class="py-0 pr-0">
+        <v-col cols="12" sm="3" class="py-0 pr-0">
           <v-text-field
             dense
             filled
+            single-line
+            height="42"
             label="User ID"
             v-model.trim="username"
             :rules="usernameRules"
@@ -29,10 +31,12 @@
           >
           </v-text-field>
         </v-col>
-        <v-col cols="4" class="py-0 pr-0">
+        <v-col cols="12" sm="3" class="py-0 pr-0">
           <v-text-field
             dense
             filled
+            single-line
+            height="42"
             label="Password"
             type="password"
             v-model.trim="password"
@@ -41,12 +45,12 @@
           >
           </v-text-field>
         </v-col>
-        <v-col cols="4" class="py-0">
+        <v-col cols="12" sm="3" class="py-0">
           <v-btn
             large
             depressed
             color="primary"
-            class="link-account-btn"
+            class="link-account-btn align-self-center"
             @click="linkAccounts()"
             data-test="dialog-save-button"
             :loading="isLoading"
@@ -84,7 +88,7 @@ export default class BcolLogin extends Vue {
     return !!this.username && !!this.password
   }
   private usernameRules = [
-    v => !!v.trim() || 'Username is required'
+    v => !!v.trim() || 'User ID is required'
   ]
 
   private passwordRules = [
@@ -134,12 +138,6 @@ export default class BcolLogin extends Vue {
 </script>
 
 <style lang="scss" scoped>
-  .bcol-tooltip__msg {
-    max-width: 20rem;
-    line-height: 1.5;
-    font-size: 0.9375rem;
-  }
-
   .v-icon {
     margin-top: -2px;
     font-size: 1.25rem !important;
@@ -161,5 +159,11 @@ export default class BcolLogin extends Vue {
     border-width: 10px 10px 10px 10px;
     border-style: solid;
     border-color: transparent transparent var(--v-grey-darken4) transparent;
+  }
+
+  .bcol-tooltip__msg {
+    max-width: 20rem;
+    line-height: 1.5;
+    font-size: 0.9375rem;
   }
 </style>

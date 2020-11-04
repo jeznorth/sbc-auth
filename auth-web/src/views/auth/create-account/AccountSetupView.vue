@@ -4,12 +4,13 @@
       <h1 class="view-header__title">{{$t('createBCRegistriesAccount')}}</h1>
       <p class="mt-3 mb-0">Create an account to access BC Registries products and services.</p>
     </div>
-    <v-card flat>
-      <Stepper
-        :stepper-configuration="stepperConfig"
-        @final-step-action="createAccount"
-      ></Stepper>
-    </v-card>
+
+    <!-- Stepper Component -->
+    <Stepper
+      :stepper-configuration="stepperConfig"
+      @final-step-action="createAccount"
+    ></Stepper>
+
     <!-- Alert Dialog (Error) -->
     <ModalDialog
       ref="errorDialog"
@@ -109,8 +110,8 @@ export default class AccountSetupView extends Vue {
   private stepperConfig: Array<StepConfiguration> =
     [
       {
-        title: 'Select Account Type',
-        stepName: 'Select Account Type',
+        title: 'Account Type',
+        stepName: 'Account Type',
         component: AccountTypeSelector,
         componentProps: {}
       },

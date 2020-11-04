@@ -1,6 +1,6 @@
 <template>
   <v-stepper class="stepper d-flex elevation-0" v-model="currentStepNumber">
-    <v-container class="stepper-nav pa-10 pr-0">
+    <v-container class="stepper-nav pa-8">
       <template v-for="step in steps">
         <v-stepper-step
           class="pa-3"
@@ -11,9 +11,11 @@
         <v-divider vertical class="step-divider mt-n1 mb-n1" :key="`${getStepIndex(step)}-divider`" v-if="step !== steps"></v-divider>
       </template>
     </v-container>
-    <v-divider vertical class="my-10"></v-divider>
-    <v-container class="stepper-content pa-12">
-      <div v-for="step in steps" :key="getStepIndex(step)" class="flex-grow">
+
+    <v-divider vertical class="my-8"></v-divider>
+
+    <v-container class="stepper-content pa-8">
+      <div v-for="step in steps" :key="getStepIndex(step)" class="stepper-content-inner flex-grow">
         <template v-if="getStepIndex(step) === currentStepNumber">
           <div class="stepper-content__count mb-1 text--secondary">Step {{currentStepNumber}} of {{steps.length}}</div>
           <h2 class="stepper-content__title mb-3">{{getStepTitle(step)}}</h2>
@@ -161,7 +163,7 @@ export default class Stepper extends Vue {
     border-radius: 4px;
     pointer-events: none;
     opacity: 0.5;
-    font-weight: 700;
+    font-weight: 400;
     transition: all ease-out 0.5s;
 
     + .v-divider {
@@ -174,6 +176,7 @@ export default class Stepper extends Vue {
         width: $step-icon-size;
         height: $step-icon-size;
         min-width: $step-icon-size;
+        font-weight: 700;
       }
 
       .v-stepper__label {
@@ -220,7 +223,7 @@ export default class Stepper extends Vue {
 
   .stepper-nav {
     flex: 0 0 auto;
-    width: 20rem;
+    width: 21.75rem;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
 
@@ -268,6 +271,18 @@ export default class Stepper extends Vue {
           .v-icon {
             color: $stepper-primary-color;
           }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .stepper-nav {
+      width: 10rem;
+
+      ::v-deep {
+        .v-stepper__label {
+          display: none;
         }
       }
     }
@@ -326,6 +341,11 @@ export default class Stepper extends Vue {
       font-size: 0.875rem;
       font-weight: bold;
     }
+  }
+
+  .stepper-content-inner {
+    max-width: 844px;
+    margin: 0 auto;
   }
 
   ::v-deep {

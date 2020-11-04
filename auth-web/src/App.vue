@@ -1,7 +1,13 @@
 <template>
   <v-app id="app">
     <div class="header-group" ref="headerGroup">
-      <sbc-loader :show="showLoading" />
+      <v-overlay :value="showLoading">
+        <v-progress-circular
+          indeterminate
+          size="64"
+        ></v-progress-circular>
+        </v-overlay>
+      <!-- <sbc-loader :show="showLoading" /> -->
       <sbc-header
         :key="$store.state.refreshKey"
         :in-auth="true"

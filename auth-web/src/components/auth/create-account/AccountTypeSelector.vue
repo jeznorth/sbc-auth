@@ -1,15 +1,13 @@
 import { AccessType } from '@/util/constants'
 <template>
   <div>
-    <p class="mb-7" v-if="!isAccountChange">There is no cost to create a BC Registries account. You only pay for the services and products you purchase.</p>
-    <p class="mb-7" v-if="isAccountChange">There is no cost to change a BC Registries account type. You only pay for the services and products you purchase.</p>
+    <p class="mb-7" v-if="!isAccountChange">Select an account type. There is no cost to create a BC Registries account. You only pay for the services and products you purchase.</p>
+    <p class="mb-7" v-if="isAccountChange">Select an account type. There is no cost to change a BC Registries account type. You only pay for the services and products you purchase.</p>
     <v-row>
-      <v-col
-        class="d-flex align-stretch"
-        sm="12" md="6"
+      <v-col class="d-flex align-stretch" cols="12" md="6"
       >
         <v-card
-          class="account-card pa-10 pt-9 elevation-2"
+          class="account-card pa-8 elevation-2"
           :class="{'active': selectedAccountType == ACCOUNT_TYPE.BASIC}"
           flat
           outlined
@@ -17,13 +15,13 @@ import { AccessType } from '@/util/constants'
           @click="selectAccountType(ACCOUNT_TYPE.BASIC)"
         >
           <div class="account-type">
-            <div class="account-type__name mt-n1 mb-2">
+            <div class="account-type__name mt-n1 mb-1">
               Basic
             </div>
-            <div class="account-type__title mb-8">
+            <div class="account-type__title mb-7">
               I make 10 transactions per month or less
             </div>
-            <ul class="account-type__details ml-1">
+            <ul class="account-type__details">
               <li class="mb-4">For users who file on behalf of their own businesses or conduct a limited number of searches</li>
               <li class="mb-4">Credit card payment only</li>
               <li>Up to 10 purchases per month</li>
@@ -31,8 +29,8 @@ import { AccessType } from '@/util/constants'
           </div>
 
           <!-- State Button (Create Account) -->
-          <div class="mt-9" v-if="!isAccountChange">
-            <v-btn large block depressed color="primary" class="font-weight-bold"
+          <div class="mt-6" v-if="!isAccountChange">
+            <v-btn block depressed color="primary" class="font-weight-bold"
               :outlined="selectedAccountType != ACCOUNT_TYPE.BASIC"
               @click="selectAccountType(ACCOUNT_TYPE.BASIC)">
               {{ selectedAccountType == ACCOUNT_TYPE.BASIC ? 'SELECTED' : 'SELECT'}}
@@ -40,8 +38,8 @@ import { AccessType } from '@/util/constants'
           </div>
 
           <!-- State Button (Change Account) -->
-          <div class="mt-9" v-if="isAccountChange">
-            <v-btn large block depressed color="primary" class="font-weight-bold"
+          <div class="mt-6" v-if="isAccountChange">
+            <v-btn block depressed color="primary" class="font-weight-bold"
               :outlined="selectedAccountType != ACCOUNT_TYPE.BASIC"
               @click="selectAccountType(ACCOUNT_TYPE.BASIC)">
               <span v-if="accountTypeBeforeChange == ACCOUNT_TYPE.BASIC">CURRENT ACCOUNT</span>
@@ -51,12 +49,10 @@ import { AccessType } from '@/util/constants'
 
         </v-card>
       </v-col>
-      <v-col
-        class="d-flex align-stretch"
-        sm="12" md="6"
+      <v-col class="d-flex align-stretch" cols="12" md="6"
       >
         <v-card
-          class="account-card pa-10 pt-9 elevation-2 d-flex"
+          class="account-card pa-8 elevation-2 d-flex"
           :class="{'active': selectedAccountType == ACCOUNT_TYPE.PREMIUM}"
           flat
           outlined
@@ -64,9 +60,9 @@ import { AccessType } from '@/util/constants'
           @click="selectAccountType(ACCOUNT_TYPE.PREMIUM)"
         >
           <div class="account-type">
-            <div class="account-type__name mt-n1 mb-2">PREMIUM</div>
-            <div class="account-type__title mb-8">I make more than 10 transactions per month</div>
-            <ul class="account-type__details ml-1 mb-6">
+            <div class="account-type__name mt-n1 mb-1">PREMIUM</div>
+            <div class="account-type__title mb-7">I make more than 10 transactions per month</div>
+            <ul class="account-type__details mb-7">
               <li class="mb-4">For firms and companies who search frequently or file for a large number of businesses</li>
               <li class="mb-4">Uses your BC Online account to pay for products and services</li>
               <li class="mb-4">Unlimited transactions</li>
@@ -79,23 +75,34 @@ import { AccessType } from '@/util/constants'
               </v-btn>
             </div>
 
-            <!-- State Button (Create Account) -->
-            <div class="mt-9" v-if="!isAccountChange">
-              <v-btn large block depressed color="primary" class="font-weight-bold"
+            <!-- Select Buttons -->
+            <div class="mt-6">
+
+              <!-- State Button (Create Account) -->
+              <v-btn
+                v-if="!isAccountChange"
+                block
+                depressed
+                color="primary"
+                class="font-weight-bold"
                 :outlined="selectedAccountType != ACCOUNT_TYPE.PREMIUM"
                 @click="selectAccountType(ACCOUNT_TYPE.PREMIUM)">
                 {{ selectedAccountType == ACCOUNT_TYPE.PREMIUM ? 'SELECTED' : 'SELECT' }}
               </v-btn>
-            </div>
 
-            <!-- State Button (Change Account) -->
-            <div class="mt-9" v-if="isAccountChange">
-              <v-btn large block depressed color="primary" class="font-weight-bold"
+              <!-- State Button (Change Account) -->
+              <v-btn
+                v-if="isAccountChange"
+                block
+                depressed
+                color="primary"
+                class="font-weight-bold"
                 :outlined="selectedAccountType != ACCOUNT_TYPE.PREMIUM"
                 @click="selectAccountType(ACCOUNT_TYPE.PREMIUM)">
                 <span v-if="accountTypeBeforeChange == ACCOUNT_TYPE.PREMIUM">CURRENT ACCOUNT</span>
                 <span v-if="accountTypeBeforeChange != ACCOUNT_TYPE.PREMIUM">{{ selectedAccountType == ACCOUNT_TYPE.PREMIUM ? 'SELECTED' : 'SELECT'}}</span>
               </v-btn>
+
             </div>
 
           </div>
@@ -235,7 +242,6 @@ export default class AccountTypeSelector extends Mixins(Steppable) {
   display: flex;
   flex-direction: column;
   position: relative;
-  background-color: var(--v-grey-lighten4) !important;
 
   &:hover {
     border-color: var(--v-primary-base) !important;
@@ -278,20 +284,6 @@ export default class AccountTypeSelector extends Mixins(Steppable) {
   span {
     text-decoration: underline;
   }
-}
-
-ul {
-  list-style: none; /* Remove default bullets */
-  font-size: 0.875rem;
-}
-
-ul li::before {
-  content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
-  color: var(--v-primary-base);
-  font-weight: 700;
-  display: inline-block;
-  width: 1.5rem;
-  margin-left: -1.5rem;
 }
 
 .selected-icon {
